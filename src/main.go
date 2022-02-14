@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 
-	color "github.com/TwiN/go-color"
+	"github.com/TwiN/go-color"
 )
 
 func main() {
-	fmt.Println(color.Ize(color.Red, "Hello"))
+	s := "\n\t======== %s %s ========\n\t======  Made by Jota ======\n\n"
+	fmt.Printf(s,
+		color.Ize(color.Green, "NET"), color.Ize(color.Cyan, "TOOLS"))
 }
