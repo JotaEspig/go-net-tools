@@ -1,4 +1,4 @@
-package dnsresolver
+package main
 
 import (
 	"fmt"
@@ -10,19 +10,19 @@ import (
 )
 
 // Runs the dns resolver
-func Run(host string, file string) bool {
+func Run(host string, file string) {
 	if file == "" {
 		addr, err := net.LookupIP(host)
 		if err != nil {
 			fmt.Println("Unknown host")
-			return false
+			return
 		}
 		fmt.Printf("%s --> %s\n",
 			host, color.Ize(color.Red, addr[0].String()))
 	}
 	data, err := os.ReadFile(file)
 	if err != nil {
-		return false
+		return
 	}
 	lines := strings.Split(string(data), "\n")
 	for _, subd := range lines {
@@ -34,5 +34,9 @@ func Run(host string, file string) bool {
 		fmt.Printf("%s --> %s\n",
 			hostname, color.Ize(color.Red, addr[0].String()))
 	}
-	return true
+}
+
+func main() {
+	args := os.Args
+	Run(args[1], args[2])
 }
