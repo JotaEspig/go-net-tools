@@ -10,7 +10,7 @@ import (
 )
 
 // Runs the dns resolver
-func Run(host string, file string) {
+func run(host string, file string) {
 	if file == "" {
 		addr, err := net.LookupIP(host)
 		if err != nil {
@@ -38,5 +38,5 @@ func Run(host string, file string) {
 
 func main() {
 	args := os.Args
-	Run(args[1], args[2])
+	run(args[1], args[2])
 }
