@@ -37,6 +37,16 @@ func run(host string, file string) {
 }
 
 func main() {
-	args := os.Args
-	run(args[1], args[2])
+	var host, filename string
+	if len(os.Args) == 3 {
+		host = os.Args[1]
+		filename = os.Args[2]
+	} else if len(os.Args) == 2 {
+		host = os.Args[1]
+	} else {
+		fmt.Println("How to use:\ndns_resolver <host> [wordlist of subdomains]")
+		return
+	}
+
+	run(host, filename)
 }
