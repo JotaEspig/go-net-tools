@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"my-cli/shell"
+	"go-net-tools/shell"
 
 	"github.com/TwiN/go-color"
 )

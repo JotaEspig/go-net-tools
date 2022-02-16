@@ -1,4 +1,4 @@
-module my-cli
+module go-net-tools
 
 go 1.17
 
