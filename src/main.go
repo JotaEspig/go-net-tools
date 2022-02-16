@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
+	"my-cli/shell"
 
 	"github.com/TwiN/go-color"
 )
 
 func main() {
-	s := "\n\t======== %s %s ========\n\t======  Made by Jota ======\n\n"
+	s := "\n\n================ %s %s ================\n"
+	s += "==============  Made by Jota ==============\n\n\n"
 	fmt.Printf(s,
-		color.Ize(color.Green, "NET"), color.Ize(color.Cyan, "TOOLS"))
+		color.Ize(color.Cyan, "NET"), color.Ize(color.Yellow, "TOOLS"))
+	sh := shell.Init()
+	sh.Run()
+
 }
