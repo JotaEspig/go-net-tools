@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	PORT_MIN = 1
-	PORT_MAX = 1024
+	PORT_MIN_D = 1
+	PORT_MAX_D = 1024
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 
 	case 3:
 		host = os.Args[1]
-		iPort = PORT_MIN
+		iPort = PORT_MIN_D
 		fPort, err = strconv.ParseUint(os.Args[3], 10, 16)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -46,8 +46,8 @@ func main() {
 
 	case 2:
 		host = os.Args[1]
-		iPort = PORT_MIN
-		fPort = PORT_MAX
+		iPort = PORT_MIN_D
+		fPort = PORT_MAX_D
 
 	default:
 		fmt.Println("How to use: port_scanner <host> [port_min] [port_max]")
