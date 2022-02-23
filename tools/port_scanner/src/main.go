@@ -37,7 +37,7 @@ func main() {
 
 	default:
 		fmt.Println("How to use: port_scanner <host> [port_min] [port_max]")
-		//return
+		return
 	}
 
 	run(host, iPort, fPort)
