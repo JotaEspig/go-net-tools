@@ -16,7 +16,7 @@ const (
 	PORT_MAX_D = 1024 // Default value of the last port to check
 )
 
-func run(host string, iPort uint64, fPort uint64) {
+func run(host string, iPort int, fPort int) {
 	var i, j int
 	var openPorts []int
 	wg := &sync.WaitGroup{}
@@ -31,7 +31,7 @@ func run(host string, iPort uint64, fPort uint64) {
 	t_amount := 100
 
 	fmt.Println(host)
-	for i = int(iPort); i <= int(fPort); i += t_amount {
+	for i = iPort; i <= fPort; i += t_amount {
 		iP := i            // initial port
 		fP := i + t_amount // final port
 		wg.Add(t_amount)

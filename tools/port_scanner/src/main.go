@@ -9,16 +9,16 @@ import (
 func main() {
 	var err error
 	var host string
-	var iPort, fPort uint64
+	var iPort, fPort int
 	switch len(os.Args) {
 	case 4:
 		host = os.Args[1]
-		iPort, err = strconv.ParseUint(os.Args[2], 10, 16)
+		iPort, err = strconv.Atoi(os.Args[2])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-		fPort, err = strconv.ParseUint(os.Args[3], 10, 16)
+		fPort, err = strconv.Atoi(os.Args[3])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -26,7 +26,7 @@ func main() {
 
 	case 3:
 		host = os.Args[1]
-		fPort, err = strconv.ParseUint(os.Args[3], 10, 16)
+		fPort, err = strconv.Atoi(os.Args[3])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
