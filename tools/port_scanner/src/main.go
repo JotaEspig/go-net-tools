@@ -1,43 +1,37 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
 	var err error
-	var host string
+	var host, portsRange string
+	var ports []string
 	var iPort, fPort int
-	switch len(os.Args) {
-	case 4:
-		host = os.Args[1]
-		iPort, err = strconv.Atoi(os.Args[2])
+
+	flag.StringVar(&host, "t", "", "Host that will be scanned")
+	flag.StringVar(&portsRange, "p", "0-0",
+		"The range of ports that will be scanned. Ex.: '1-1000' (ports 1 to 1000 will be scanned)")
+	flag.Parse()
+
+	ports = strings.Split(portsRange, "-")
+	if len(ports) >= 1 {
+		iPort, err = strconv.Atoi(ports[0])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-		fPort, err = strconv.Atoi(os.Args[3])
+	}
+	if len(ports) == 2 {
+		fPort, err = strconv.Atoi(ports[1])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-
-	case 3:
-		host = os.Args[1]
-		fPort, err = strconv.Atoi(os.Args[3])
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-
-	case 2:
-		host = os.Args[1]
-
-	default:
-		fmt.Println("How to use: port_scanner <host> [port_min] [port_max]")
-		return
 	}
 
 	run(host, iPort, fPort)
