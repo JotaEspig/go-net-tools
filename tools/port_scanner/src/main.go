@@ -19,14 +19,19 @@ func main() {
 	flag.Parse()
 
 	ports = strings.Split(portsRange, "-")
-	if len(ports) >= 1 {
-		iPort, err = strconv.Atoi(ports[0])
+	if len(ports) == 1 {
+		fPort, err = strconv.Atoi(ports[0])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
 	}
 	if len(ports) == 2 {
+		iPort, err = strconv.Atoi(ports[0])
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 		fPort, err = strconv.Atoi(ports[1])
 		if err != nil {
 			fmt.Println(err.Error())
