@@ -28,11 +28,13 @@ func run(host string, iPort uint64, fPort uint64) {
 		fPort = PORT_MAX_D
 	}
 
+	t_amount := 100
+
 	fmt.Println(host)
-	for i = int(iPort); i <= int(fPort); i += 100 {
-		iP := i       // initial port
-		fP := i + 100 // final port
-		wg.Add(100)
+	for i = int(iPort); i <= int(fPort); i += t_amount {
+		iP := i            // initial port
+		fP := i + t_amount // final port
+		wg.Add(t_amount)
 		for j = iP; j < fP; j++ {
 			port := j
 			go func() {
