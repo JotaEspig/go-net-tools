@@ -26,7 +26,6 @@ func main() {
 
 	case 3:
 		host = os.Args[1]
-		iPort = PORT_MIN_D
 		fPort, err = strconv.ParseUint(os.Args[3], 10, 16)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -35,8 +34,6 @@ func main() {
 
 	case 2:
 		host = os.Args[1]
-		iPort = PORT_MIN_D
-		fPort = PORT_MAX_D
 
 	default:
 		fmt.Println("How to use: port_scanner <host> [port_min] [port_max]")
