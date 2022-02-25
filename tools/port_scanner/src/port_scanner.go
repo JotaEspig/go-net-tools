@@ -62,8 +62,12 @@ func run(host string, iPort int, fPort int) {
 		}
 		wg.Wait()
 	}
-	sort.Ints(openPorts)
-	printPorts(openPorts)
+	if len(openPorts) > 0 {
+		sort.Ints(openPorts)
+		printPorts(openPorts)
+	} else {
+		fmt.Println("There is no open ports in this host")
+	}
 }
 
 func scanPort(host string, port int) bool {
