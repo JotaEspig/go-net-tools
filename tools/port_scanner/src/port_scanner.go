@@ -22,20 +22,36 @@ func run(host string, iPort int, fPort int) {
 	wg := &sync.WaitGroup{}
 
 	if iPort == 0 {
-		iPort = PORT_MIN_D
+		iPort = fPort
 	}
 	if fPort == 0 {
 		fPort = PORT_MAX_D
+		iPort = PORT_MIN_D
 	}
 
 	t_amount := 100
 
-	fmt.Println(host)
+	addr, err := net.LookupIP(host)
+	if err != nil {
+		fmt.Println("Could not resolve host")
+		return
+	}
+
+	fmt.Printf("Start scanning %s (%s) on ports %s -> %s\n",
+		color.Ize(color.Green, host),
+		addr[0].String(),
+		color.Ize(color.Cyan, fmt.Sprint(iPort)),
+		color.Ize(color.Cyan, fmt.Sprint(fPort)))
+
+	host = addr[0].String()
 	for i = iPort; i <= fPort; i += t_amount {
 		iP := i            // initial port
 		fP := i + t_amount // final port
-		wg.Add(t_amount)
 		for j = iP; j < fP; j++ {
+			if j > fPort {
+				break
+			}
+			wg.Add(1)
 			port := j
 			go func() {
 				if scanPort(host, port) {
